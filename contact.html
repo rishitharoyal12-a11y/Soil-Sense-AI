@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact SoilSense AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand" href="/">SoilSense AI</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        </div>
+      </nav>
+      <main class="content-page">
+        <h1>Contact</h1>
+        <p>Share feedback, suggest improvements, or ask for help with your soil analysis workflow.</p>
+        <form class="contact-form">
+          <input type="text" placeholder="Your name" />
+          <input type="email" placeholder="Your email" />
+          <textarea placeholder="Tell us about your farm, field, or feedback"></textarea>
+          <button class="btn btn-primary" type="button">Send</button>
+        </form>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

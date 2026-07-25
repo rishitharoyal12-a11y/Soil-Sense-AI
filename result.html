@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoilSense AI Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand" href="/">SoilSense AI</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        </div>
+      </nav>
+
+      <main class="result-layout">
+        <section class="result-panel">
+          <p class="eyebrow">Prediction Summary</p>
+          <h1>{{ result.soil_type }}</h1>
+          <p class="subtitle">This soil profile suggests a {{ result.fertility_level }} fertility outlook with a confidence score of {{ '%.1f'|format(result.confidence * 100) }}%.</p>
+          <div class="summary-grid">
+            <article class="info-card">
+              <h3>Soil Type</h3>
+              <p>{{ result.soil_type }}</p>
+            </article>
+            <article class="info-card">
+              <h3>Fertility</h3>
+              <p>{{ result.fertility_level }}</p>
+            </article>
+            <article class="info-card">
+              <h3>AI Confidence</h3>
+              <p>{{ '%.1f'|format(result.confidence * 100) }}%</p>
+            </article>
+            <article class="info-card">
+              <h3>Health Score</h3>
+              <p>{{ result.health_score }}/100</p>
+            </article>
+          </div>
+
+          <div class="chip-list">
+            {% for crop in result.crops %}
+            <span class="chip">{{ crop.name }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="action-row">
+            <a class="btn btn-primary" href="{{ url_for('download_report', filename=result.image_path.split('/')[-1].split('.')[0]) }}">Download Report</a>
+            <a class="btn btn-secondary" href="/">Analyze another sample</a>
+          </div>
+        </section>
+
+        <aside class="result-panel">
+          <h2>Soil Properties</h2>
+          <ul class="property-list">
+            {% for key, value in result.properties.items() %}
+            <li><span>{{ key }}</span><strong>{{ value }}</strong></li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </main>
+
+      <section class="result-grid">
+        <article class="result-card">
+          <h3>Crop Recommendations</h3>
+          {% for crop in result.crops %}
+          <p><strong>{{ crop.name }}</strong> · {{ crop.season }} · Yield {{ crop.yield }}</p>
+          {% endfor %}
+        </article>
+        <article class="result-card">
+          <h3>Fertilizer Suggestions</h3>
+          {% for fertilizer in result.fertilizers %}
+          <p><strong>{{ fertilizer.name }}</strong> · {{ fertilizer.purpose }}</p>
+          {% endfor %}
+        </article>
+        <article class="result-card">
+          <h3>Pesticide Guidance</h3>
+          {% for pesticide in result.pesticides %}
+          <p><strong>{{ pesticide.name }}</strong> · {{ pesticide.target }}</p>
+          {% endfor %}
+        </article>
+        <article class="result-card">
+          <h3>Farming Tips</h3>
+          {% for tip in result.tips %}
+          <p>• {{ tip }}</p>
+          {% endfor %}
+        </article>
+      </section>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

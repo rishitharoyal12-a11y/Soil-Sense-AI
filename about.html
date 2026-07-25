@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About SoilSense AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand" href="/">SoilSense AI</a>
+        <div class="nav-links">
+          <a href="/">Home</a>
+          <a href="/contact">Contact</a>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        </div>
+      </nav>
+      <main class="content-page">
+        <h1>About SoilSense AI</h1>
+        <p>SoilSense AI brings together image analysis and agronomic recommendations into one polished workflow for growers, agronomists, and curious gardeners.</p>
+        <p>The experience combines a premium interface with practical reporting so that each upload creates a clear, supportive path forward.</p>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>AI-assisted diagnosis</h3>
+            <p>Classify major soil types and estimate key fertility signals with a straightforward prediction pipeline.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Localized guidance</h3>
+            <p>Receive recommendations that feel practical for the predicted soil profile rather than purely theoretical.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Readable reporting</h3>
+            <p>Export the summary as a PDF for field notes, advisory conversations, or seasonal planning.</p>
+          </article>
+        </div>
+      </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

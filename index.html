@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoilSense AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a class="brand" href="/">SoilSense AI</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        </div>
+      </nav>
+
+      <main class="hero">
+        <section class="hero-copy">
+          <p class="eyebrow">AI Powered Soil Analysis</p>
+          <h1>Turn every soil image into smarter farming choices.</h1>
+          <p class="subtitle">Upload a soil image and receive instant guidance on soil type, fertility, crop suitability, fertilizer plans, pesticides, and practical care tips.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#upload-section">Analyze Soil</a>
+            <a class="btn btn-secondary" href="/about">Learn More</a>
+          </div>
+          <div class="chip-list" role="list" aria-label="Highlights">
+            <span class="chip">Premium dashboard</span>
+            <span class="chip">Dark/Light mode</span>
+            <span class="chip">Downloadable report</span>
+          </div>
+        </section>
+
+        <section class="hero-visual" aria-label="Animated soil illustration">
+          <div class="visual-card">
+            <div class="soil-orb"></div>
+            <div class="soil-particle"></div>
+            <div class="soil-particle alt"></div>
+          </div>
+        </section>
+      </main>
+
+      <section id="upload-section" class="upload-card">
+        <div class="section-heading">
+          <p class="eyebrow">Upload & Analyze</p>
+          <h2>Drop in a soil photo to generate a practical report.</h2>
+        </div>
+        <form action="/analyze" method="post" enctype="multipart/form-data" class="upload-form">
+          <label class="dropzone" for="image">
+            <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" required />
+            <span class="dropzone-title">Drag & drop your soil image here or click to browse</span>
+            <span class="dropzone-meta">Supports JPG, JPEG, PNG, and WEBP up to 16MB</span>
+          </label>
+          <div id="preview-panel" class="preview-panel" hidden></div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Analyze</button>
+            <button class="btn btn-secondary" type="reset">Clear</button>
+          </div>
+        </form>
+        {% if error %}
+        <p class="error" role="alert">{{ error }}</p>
+        {% endif %}
+      </section>
+
+      <section id="features" class="feature-grid">
+        <article class="feature-card">
+          <h3>Fast soil insights</h3>
+          <p>Surface soil type and fertility with a polished, approachable workflow.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Actionable recommendations</h3>
+          <p>Receive crop, fertilizer, pesticide, and care guidance tailored to the detected profile.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Professional reporting</h3>
+          <p>Export a clean PDF summary that can be shared with a farm team or advisor.</p>
+        </article>
+      </section>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
